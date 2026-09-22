@@ -1,0 +1,689 @@
+/*
+=============================================================
+SOLCONT - CSS COMENTADO
+=============================================================
+GUÍA RÁPIDA PARA ENCONTRAR LO QUE BUSCAS:
+
+1) LOGO ARRIBA ................. busca: ***** LOGO PRINCIPAL *****
+2) LOGO ABAJO .................. busca: ***** LOGO DEL PIE *****
+3) FOTO GRANDE DE INICIO ....... busca: ***** PORTADA PRINCIPAL *****
+4) TÍTULO GRANDE DE INICIO ..... busca: ***** TÍTULO GRANDE DE PORTADA *****
+5) COLORES AZUL/NARANJO ........ busca: VARIABLES GENERALES
+6) SERVICIOS ................... busca: ***** CUADRÍCULA DE SERVICIOS *****
+7) PLANES ...................... busca: ***** PLANES *****
+8) EQUIPO / STAFF .............. busca: ***** EQUIPO / STAFF *****
+9) FORMULARIO .................. busca: ***** FORMULARIO *****
+10) CONTACTO ................... busca: ***** CONTACTO *****
+11) WHATSAPP FLOTANTE .......... busca: ***** BOTÓN FLOTANTE DE WHATSAPP *****
+12) CELULAR .................... busca: ***** CELULAR *****
+13) TABLET ..................... busca: ***** TABLET / PANTALLAS MEDIANAS *****
+
+IMPORTANTE:
+- Este archivo conserva el CSS original.
+- Los comentarios NO cambian el funcionamiento de la página.
+- Para modificar algo, busca las frases con *****.
+=============================================================
+*/
+
+/* VARIABLES GENERALES: aquí cambias los colores corporativos, sombras y bordes redondeados de TODO el sitio. */
+:root {
+  /* Azul corporativo principal (barra superior, botones/zonas azules). */
+  --blue: #0a3f7d;
+  /* Azul secundario. */
+  --blue-2: #0f579b;
+  /* Azul oscuro para títulos y fondos. */
+  --navy: #082f5d;
+  /* Naranjo corporativo principal. */
+  --orange: #f29a4a;
+  /* Naranjo claro para degradados. */
+  --orange-2: #ffab5f;
+  /* Color principal del texto. */
+  --ink: #17324d;
+  /* Color de textos secundarios/grises. */
+  --muted: #64748b;
+  /* Fondo gris muy claro de secciones. */
+  --soft: #f5f8fb;
+  /* Color de bordes y líneas. */
+  --line: #dfe7ef;
+  /* Blanco. */
+  --white: #ffffff;
+  /* Sombra reutilizable en tarjetas. */
+  --shadow: 0 18px 50px rgba(8, 47, 93, .12);
+  /* Radio general para bordes redondeados. */
+  --radius: 22px;
+}
+
+/* REGLA GLOBAL: hace que padding y border se incluyan dentro del ancho/alto de cada elemento. */
+* { box-sizing: border-box; }
+/* DESPLAZAMIENTO: activa el scroll suave cuando haces clic en Inicio, Servicios, Contacto, etc. */
+html { scroll-behavior: smooth; }
+/* CUERPO DE LA PÁGINA: tipografía general, color principal del texto, fondo y altura entre líneas. */
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: #fff; line-height: 1.6; }
+/* ENLACES: heredan el color del elemento padre y elimina el subrayado por defecto. */
+a { color: inherit; text-decoration: none; }
+/* IMÁGENES: evita que una imagen sea más ancha que su contenedor y la muestra como bloque. */
+img { max-width: 100%; display: block; }
+/* ANCHO GENERAL DEL CONTENIDO: aquí controlas cuánto ocupa la página de izquierda a derecha. */
+.container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+/* BARRA AZUL SUPERIOR: donde aparecen dirección, correo y teléfono. */
+.topbar { background: var(--blue); color: #fff; font-size: 13px; }
+/* CONTENIDO DE LA BARRA SUPERIOR: altura, separación y alineación de los datos de contacto. */
+.topbar-inner { min-height: 40px; display: flex; align-items: center; gap: 26px; justify-content: flex-end; }
+/* ENLACES DE LA BARRA SUPERIOR: controla su transparencia. */
+.topbar a { opacity: .95; }
+
+/* CABECERA/MENÚ: mantiene el menú fijo arriba al desplazarte y aplica fondo blanco semitransparente. */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(10,63,125,.08); }
+/* ALTURA Y DISTRIBUCIÓN DEL MENÚ PRINCIPAL: si agrandas mucho el logo, aumenta min-height aquí. */
+.nav-wrap { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+/* ***** LOGO PRINCIPAL ***** AQUÍ AGRANDAS O ACHICAS EL LOGO DEL MENÚ. Cambia width y height. */
+.brand { display: flex; align-items: center; flex: 0 0 auto; }
+.brand img {
+  width: 300px;
+  height: auto;
+  max-height: 82px;
+  object-fit: contain;
+}
+/* CORRECCIÓN APLICADA:
+- La cabecera usa assets/logo-solcont-horizontal.png.
+- width controla el ancho visual del logo horizontal.
+- Si quieres aún más grande, prueba 320px o 340px.
+- El logo vertical original se conserva en el footer.
+*/
+/* MENÚ PRINCIPAL: posición, separación y tamaño de Inicio, Nosotros, Servicios, Planes y Contacto. */
+.main-nav { display: flex; align-items: center; gap: 22px; font-size: 15px; font-weight: 600; }
+/* ENLACES DEL MENÚ: base necesaria para la línea animada que aparece debajo. */
+.main-nav > a:not(.btn) { position: relative; }
+/* LÍNEA NARANJA DEL MENÚ: color, grosor y animación al pasar el mouse. */
+.main-nav > a:not(.btn)::after { content: ""; position: absolute; left: 0; bottom: -7px; width: 0; height: 2px; background: var(--orange); transition: .2s; }
+/* EFECTO HOVER DEL MENÚ: hace que la línea naranja crezca al pasar el mouse. */
+.main-nav > a:not(.btn):hover::after { width: 100%; }
+/* BOTÓN MENÚ MÓVIL: se oculta en computador y aparece en pantallas pequeñas. */
+.menu-toggle { display: none; border: 0; background: transparent; font-size: 26px; color: var(--blue); }
+
+/* ***** PORTADA PRINCIPAL ***** AQUÍ CAMBIAS LA FOTO GRANDE DE INICIO en background: url(...). También su altura. */
+.hero { position: relative; min-height: 650px; display: grid; place-items: center; background: url('assets/hero-contabilidad.jpeg') center/cover no-repeat; /* CAMBIA AQUÍ el archivo de la foto de portada */ color: #fff; overflow: hidden; }
+/* CAPA AZUL SOBRE LA FOTO DE PORTADA: aquí haces el fondo más oscuro o más transparente. */
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,38,76,.92) 0%, rgba(5,38,76,.82) 48%, rgba(5,38,76,.32) 100%); }
+/* CURVA BLANCA INFERIOR DE LA PORTADA: controla forma, altura y posición de la onda. */
+.hero::after { content:""; position:absolute; left:-5%; right:-5%; bottom:-72px; height:140px; background:white; border-radius:50% 50% 0 0/40% 40% 0 0; opacity:.98; }
+/* CONTENIDO DE PORTADA: posición y espacio del título, texto y botones. */
+.hero-content { position: relative; z-index: 2; padding: 90px 0 130px; }
+/* ANCHO MÁXIMO DEL TEXTO DE PORTADA. */
+.hero-content > * { max-width: 760px; }
+/* TEXTO PEQUEÑO SOBRE EL TÍTULO: 'CONTABILIDAD - FINANZAS - RRHH'. */
+.eyebrow { display: inline-flex; align-items: center; max-width: 100%; text-transform: uppercase; letter-spacing: .18em; font-size: clamp(13px, 1.25vw, 16px); font-weight: 900; line-height: 1.15; color: #ffd1a5; margin-bottom: 16px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 8px 20px rgba(8,47,93,.08); }
+/* VARIANTE AZUL DEL TEXTO PEQUEÑO usada sobre fondos claros. */
+.eyebrow.blue { color: var(--blue-2); background: #eaf3fb; border-color: #cfe0ef; box-shadow: 0 8px 20px rgba(8,47,93,.06); }
+.section-head .eyebrow, .intro .eyebrow, .team-section .eyebrow, .contact-section .eyebrow { margin-bottom: 18px; }
+/* ***** TÍTULO GRANDE DE PORTADA ***** AQUÍ CAMBIAS EL TAMAÑO DEL TEXTO PRINCIPAL. */
+.hero h1 { font-size: clamp(42px, 5vw, 66px); line-height: 1.04; margin: 0 0 22px; letter-spacing: -.035em; }
+/* PÁRRAFO DE PORTADA: tamaño y color del texto explicativo. */
+.hero p { font-size: 19px; color: rgba(255,255,255,.9); margin: 0 0 28px; }
+/* BOTONES DE PORTADA: separación y distribución. */
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+/* ETIQUETAS PEQUEÑAS DE PORTADA: F29, Renta F22, RRHH, etc. */
+.hero-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+/* DISEÑO DE CADA ETIQUETA DE PORTADA. */
+.hero-badges span { background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.22); padding: 8px 12px; border-radius: 999px; font-size: 13px; }
+
+/* ESTILO BASE DE TODOS LOS BOTONES: tamaño, borde redondeado, grosor y efecto. */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 999px; font-weight: 800; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, background .2s; cursor: pointer; font: inherit; }
+/* EFECTO DE LOS BOTONES AL PASAR EL MOUSE. */
+.btn:hover { transform: translateY(-2px); }
+/* ***** BOTÓN NARANJO PRINCIPAL ***** Aquí cambias sus colores y sombra. */
+.btn-primary { background: linear-gradient(135deg, var(--orange), var(--orange-2)); color: #fff; box-shadow: 0 10px 24px rgba(242,154,74,.28); }
+/* BOTÓN PEQUEÑO: usado normalmente en cabecera o acciones compactas. */
+.btn-small { min-height: 42px; padding: 0 17px; font-size: 14px; }
+/* BOTÓN TRANSPARENTE SOBRE FONDO OSCURO. */
+.btn-ghost { border-color: rgba(255,255,255,.6); color: #fff; background: rgba(255,255,255,.08); }
+/* BOTÓN BLANCO CON BORDE AZUL. */
+.btn-outline { border-color: var(--blue); color: var(--blue); background: #fff; }
+/* BOTÓN BLANCO SOBRE FONDO AZUL. */
+.btn-light { background: #fff; color: var(--blue); }
+
+/* ESPACIADO VERTICAL GENERAL DE CADA SECCIÓN. */
+.section { padding: 92px 0; }
+/* SECCIÓN CON FONDO GRIS MUY CLARO. */
+.section-soft { background: var(--soft); }
+/* CABECERA DE SECCIONES: limita ancho y centra título/descripción. */
+.section-head { max-width: 760px; margin: 0 auto 44px; text-align: center; }
+/* ***** TÍTULOS DE SECCIÓN ***** tamaño y color de Nosotros, Servicios, Planes, etc. */
+.section h2 { font-size: clamp(32px, 4vw, 46px); line-height: 1.12; letter-spacing: -.025em; margin: 0 0 18px; color: var(--navy); }
+/* PÁRRAFOS INTRODUCTORIOS: color gris secundario. */
+.section-head p, .intro p { color: var(--muted); }
+/* SECCIONES EN DOS COLUMNAS: imagen a un lado y texto al otro. */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+/* TARJETA QUE CONTIENE IMÁGENES: borde redondeado y sombra. */
+.media-card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #fff; }
+/* ***** TAMAÑO DE IMÁGENES INTERNAS ***** controla altura mínima y recorte. */
+.media-card img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; }
+/* CUADRÍCULA DE VALORES/BENEFICIOS, normalmente en dos columnas. */
+.value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 26px; }
+/* DISEÑO DE CADA TARJETA DE VALOR/BENEFICIO. */
+.value-grid article { border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: #fff; }
+/* FUERZA A TÍTULO Y DESCRIPCIÓN DE CADA VALOR A APARECER EN LÍNEAS SEPARADAS. */
+.value-grid strong, .value-grid span { display:block; }
+/* TÍTULO DE CADA BENEFICIO/VALOR. */
+.value-grid strong { color: var(--blue); margin-bottom: 4px; }
+/* DESCRIPCIÓN PEQUEÑA DE CADA BENEFICIO. */
+.value-grid span { color: var(--muted); font-size: 14px; }
+
+/* ***** CUADRÍCULA DE SERVICIOS ***** aquí defines cuántas columnas de servicios se muestran. */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+/* TARJETA INDIVIDUAL DE SERVICIO: fondo, borde, espacio y sombra. */
+.service-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 26px; box-shadow: 0 10px 28px rgba(8,47,93,.06); position: relative; overflow: hidden; }
+/* SERVICIO DESTACADO: agrega línea naranja superior. */
+.service-card.featured { border-top: 4px solid var(--orange); }
+/* SERVICIO ANCHO: ocupa las tres columnas. */
+.service-card.wide { grid-column: span 3; display: flex; align-items: center; gap: 18px; }
+/* ICONO DE CADA SERVICIO: tamaño, fondo y borde redondeado. */
+.icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: #eaf3fb; font-size: 24px; margin-bottom: 15px; }
+/* TÍTULO DE CADA SERVICIO. */
+.service-card h3 { margin: 0 0 8px; color: var(--blue); font-size: 22px; }
+/* DESCRIPCIÓN DE CADA SERVICIO. */
+.service-card p { color: var(--muted); margin-top: 0; }
+/* LISTAS GENERALES: sangría de viñetas. */
+ul { padding-left: 19px; }
+/* ELEMENTOS DE LISTAS EN SERVICIOS Y PLANES. */
+.service-card li, .plan-card li { margin: 6px 0; color: #425a70; }
+/* ENLACES DESTACADOS EN NARANJO. */
+.text-link { color: var(--orange); font-weight: 800; }
+
+/* ***** FRANJA AZUL DESTACADA ***** usada para una sección importante. */
+.feature-band { background: linear-gradient(135deg, var(--blue), var(--navy)); color: #fff; }
+/* TÍTULO BLANCO DENTRO DE LA FRANJA AZUL. */
+.feature-band h2 { color:#fff; }
+/* PÁRRAFO CLARO DENTRO DE LA FRANJA AZUL. */
+.feature-band p { color: rgba(255,255,255,.82); }
+/* SEPARACIÓN ENTRE LAS DOS COLUMNAS DE LA FRANJA DESTACADA. */
+.feature-split { gap: 62px; }
+/* LISTA DE BENEFICIOS CON SEPARACIÓN VERTICAL. */
+.check-list { display: grid; gap: 10px; margin: 24px 0 26px; }
+/* SOMBRA OSCURA PARA UNA IMAGEN/TARJETA SOBRE FONDO AZUL. */
+.dark-edge { box-shadow: 0 22px 60px rgba(0,0,0,.28); }
+
+/* ***** PLANES ***** contraste institucional azul + naranjo. */
+#planes { background: #eef5fb; }
+#planes .section-head h2 { color: #073b70; }
+#planes .section-head p { color: #526b84; }
+.plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; align-items: stretch; }
+
+/* TARJETAS LATERALES: blancas con borde azul institucional. */
+.plan-card { 
+border: 2px solid #0b4f8a; 
+border-radius: 22px; 
+padding: 30px; 
+background: #fff; 
+position: relative; 
+display: flex; 
+flex-direction: 
+column; 
+box-shadow: 0 14px 34px rgba(8,47,93,.10); }
+
+/* PLAN PYME DESTACADO: fondo naranjo suave y borde naranjo. */
+.plan-card.popular { border: 2px solid #ff963f; background: #fff1e5; transform: translateY(-8px); box-shadow: 0 18px 45px rgba(242,154,74,.24); }
+/* ETIQUETA SUPERIOR DEL PLAN. */
+.plan-tag { align-self: flex-start; background: #e8f2fb; color: #073b70; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; margin-bottom: 14px; }
+/* ETIQUETA DEL PLAN DESTACADO. */
+.popular .plan-tag { background: #ffdfc2; color: #9a4f12; }
+/* NOMBRE DEL PLAN. */
+/* Corrección en línea 232 */
+.plan-card h3 { font-size: 28px; color: #073b70; margin: 0 0 7px; }/* DESCRIPCIÓN Y LISTA: gris azulado para mejorar el contraste. */
+.plan-desc { color: #526b84; min-height: 78px; }
+.plan-card li { color: #425a70; }
+/* LISTA DE SERVICIOS DEL PLAN: ocupa el espacio disponible. */
+.plan-card ul { flex: 1; }
+/* BOTONES DE LOS PLANES: naranjo corporativo con texto blanco. */
+#planes .plan-card .btn { background: #ff963f; border-color: #ff963f; color: #fff; }
+#planes .plan-card .btn:hover { background: #e9842f; border-color: #e9842f; color: #fff; }
+/* NOTA PEQUEÑA DEBAJO DE LOS PLANES. */
+.plans-note { color: #526b84; font-size: 13px; text-align: center; margin-top: 18px; }
+
+/* ***** EQUIPO / STAFF ***** tarjeta de cada profesional. */
+.team-section .staff-card { border-left: 4px solid var(--orange); background:#fff; border-radius: 0 16px 16px 0; padding: 18px 20px; margin: 14px 0; box-shadow: 0 8px 20px rgba(8,47,93,.05); }
+/* NOMBRE DEL PROFESIONAL. */
+.staff-card h3 { margin:0; color:var(--blue); }
+/* CARGO DEL PROFESIONAL. */
+.staff-card .role { margin:2px 0 8px; color:var(--orange); font-weight:800; }
+/* DESCRIPCIÓN O ESTUDIOS DEL PROFESIONAL. */
+.staff-card p:last-child { color:var(--muted); margin-bottom:0; }
+
+/* ***** CONTACTO ***** fondo azul de toda la sección de contacto. */
+.contact-section { background: #072e5b; color:#fff; }
+/* TÍTULO DE CONTACTO EN BLANCO. */
+.contact-section h2 { color:#fff; }
+/* PÁRRAFOS DE CONTACTO EN BLANCO TRANSPARENTE. */
+.contact-section p { color: rgba(255,255,255,.78); }
+/* DISTRIBUCIÓN DE CONTACTO: datos a la izquierda y formulario a la derecha. */
+.contact-grid { display:grid; grid-template-columns: .9fr 1.1fr; gap:56px; align-items:start; }
+/* LISTA DE DIRECCIÓN, TELÉFONO, CORREO, ETC. */
+.contact-items { display:grid; gap:12px; margin-top:26px; }
+/* CADA DATO DE CONTACTO: separación y línea divisoria. */
+.contact-items a, .contact-items div { display:flex; flex-direction:column; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+/* ETIQUETA DEL DATO DE CONTACTO, por ejemplo 'Teléfono'. */
+.contact-items strong { color:#ffd0a6; }
+/* VALOR DEL DATO DE CONTACTO. */
+.contact-items span { color:#fff; }
+/* ***** FORMULARIO ***** tarjeta blanca que contiene nombre, teléfono, correo, servicio y mensaje. */
+.contact-form { background:#fff; color:var(--ink); padding:30px; border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+/* TÍTULO DEL FORMULARIO. */
+.contact-form h3 { color:var(--navy); font-size:26px; margin:0 0 20px; }
+/* FILA DE DOS CAMPOS DEL FORMULARIO. */
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+/* ETIQUETA DE CADA CAMPO DEL FORMULARIO. */
+label { display:grid; gap:7px; font-size:13px; font-weight:800; color:#31506d; margin-bottom:14px; }
+/* ***** CAMPOS DEL FORMULARIO ***** aspecto de cajas de texto, selector y mensaje. */
+input, select, textarea { width:100%; border:1px solid #d7e2ec; border-radius:12px; padding:13px 14px; font:inherit; color:var(--ink); background:#fbfdff; outline:none; }
+/* EFECTO AZUL CUANDO EL USUARIO HACE CLIC EN UN CAMPO. */
+input:focus, select:focus, textarea:focus { border-color:var(--blue-2); box-shadow:0 0 0 3px rgba(15,87,155,.1); }
+/* BOTÓN DEL FORMULARIO: ocupa todo el ancho. */
+.contact-form .btn { width:100%; }
+/* TEXTO PEQUEÑO DE AYUDA DEBAJO DEL BOTÓN. */
+.contact-form small { display:block; color:var(--muted); margin-top:10px; text-align:center; }
+
+/* ***** PIE DE PÁGINA ***** fondo, color de texto y espacio. */
+.site-footer { background:#041f3d; color:#d9e5ef; padding:56px 0 22px; }
+/* COLUMNAS DEL PIE DE PÁGINA. */
+.footer-grid { display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; }
+/* DISTRIBUCIÓN INTERNA DE CADA COLUMNA DEL PIE. */
+.footer-grid > div { display:grid; align-content:start; gap:8px; }
+/* ***** LOGO DEL PIE DE PÁGINA ***** aquí cambias su tamaño. */
+.footer-brand img { width:130px; border-radius:12px; background:#fff; padding:8px; } /* width = tamaño del logo del footer */
+/* TÍTULOS DEL PIE DE PÁGINA. */
+.footer-grid strong { color:#fff; margin-bottom:6px; }
+/* COLOR DE ENLACES DEL PIE AL PASAR EL MOUSE. */
+.footer-grid a:hover { color:#fff; }
+/* LÍNEA Y TEXTO DE COPYRIGHT DEL FINAL. */
+.copyright { border-top:1px solid rgba(255,255,255,.12); margin-top:36px; padding-top:18px; font-size:13px; color:#9fb0c0; }
+/* ***** BOTÓN FLOTANTE DE WHATSAPP ***** posición, tamaño, color verde y sombra. */
+.floating-wa { position:fixed; right:22px; bottom:22px; z-index:40; width:58px; height:58px; border-radius:50%; display:grid; place-items:center; background:#20bf65; color:#fff; font-size:26px; box-shadow:0 10px 28px rgba(0,0,0,.24); }
+
+/* ***** TABLET / PANTALLAS MEDIANAS ***** todo lo que está dentro se aplica cuando la pantalla mide 980px o menos. */
+@media (max-width: 980px) {
+  /* CONTENIDO DE LA BARRA SUPERIOR: altura, separación y alineación de los datos de contacto. */
+  .topbar-inner { justify-content:center; flex-wrap:wrap; padding:8px 0; gap:10px 18px; }
+  /* BOTÓN MENÚ MÓVIL: se oculta en computador y aparece en pantallas pequeñas. */
+  .menu-toggle { display:block; }
+  .brand img { width:250px; max-height:72px; }
+  /* MENÚ PRINCIPAL: posición, separación y tamaño de Inicio, Nosotros, Servicios, Planes y Contacto. */
+  .main-nav { display:none; position:absolute; left:20px; right:20px; top:96px; background:#fff; padding:20px; border-radius:16px; box-shadow:var(--shadow); flex-direction:column; align-items:stretch; gap:12px; }
+  .main-nav.open { display:flex; }
+  .split, .contact-grid { grid-template-columns:1fr; }
+  /* ***** CUADRÍCULA DE SERVICIOS ***** aquí defines cuántas columnas de servicios se muestran. */
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+  /* SERVICIO ANCHO: ocupa las tres columnas. */
+  .service-card.wide { grid-column:span 2; }
+  /* ***** PLANES ***** distribución de Emprendedor, Pyme y Empresa en tres columnas. */
+  .plans-grid { grid-template-columns:1fr; }
+  /* PLAN DESTACADO: borde naranjo y pequeño desplazamiento hacia arriba. */
+  .plan-card.popular { transform:none; }
+  /* COLUMNAS DEL PIE DE PÁGINA. */
+  .footer-grid { grid-template-columns:1fr 1fr; }
+}
+
+/* ***** CELULAR ***** todo lo que está dentro se aplica cuando la pantalla mide 640px o menos. */
+@media (max-width: 640px) {
+  /* ANCHO GENERAL DEL CONTENIDO: aquí controlas cuánto ocupa la página de izquierda a derecha. */
+  .container { width:min(100% - 28px, 1160px); }
+  /* BARRA AZUL SUPERIOR: donde aparecen dirección, correo y teléfono. */
+  .topbar { display:none; }
+  /* ALTURA Y DISTRIBUCIÓN DEL MENÚ PRINCIPAL: si agrandas mucho el logo, aumenta min-height aquí. */
+  .nav-wrap { min-height:82px; }
+  /* ***** LOGO PRINCIPAL ***** AQUÍ AGRANDAS O ACHICAS EL LOGO DEL MENÚ. Cambia width y height. */
+  .brand img { width:205px; height:auto; max-height:62px; } /* LOGO HORIZONTAL EN CELULAR */
+  /* ***** PORTADA PRINCIPAL ***** AQUÍ CAMBIAS LA FOTO GRANDE DE INICIO en background: url(...). También su altura. */
+  .hero { min-height:620px; }
+  /* CAPA AZUL SOBRE LA FOTO DE PORTADA: aquí haces el fondo más oscuro o más transparente. */
+  .hero-overlay { background:linear-gradient(rgba(5,38,76,.9), rgba(5,38,76,.76)); }
+  /* CONTENIDO DE PORTADA: posición y espacio del título, texto y botones. */
+  .hero-content { padding:72px 0 110px; }
+  /* ***** TÍTULO GRANDE DE PORTADA ***** AQUÍ CAMBIAS EL TAMAÑO DEL TEXTO PRINCIPAL. */
+  .hero h1 { font-size:40px; }
+  /* PÁRRAFO DE PORTADA: tamaño y color del texto explicativo. */
+  .hero p { font-size:17px; }
+  /* ESPACIADO VERTICAL GENERAL DE CADA SECCIÓN. */
+  .section { padding:70px 0; }
+  /* ***** TÍTULOS DE SECCIÓN ***** tamaño y color de Nosotros, Servicios, Planes, etc. */
+  .section h2 { font-size:34px; }
+  .services-grid, .value-grid, .form-row, .footer-grid { grid-template-columns:1fr; }
+  /* SERVICIO ANCHO: ocupa las tres columnas. */
+  .service-card.wide { grid-column:span 1; align-items:flex-start; }
+  /* ***** TAMAÑO DE IMÁGENES INTERNAS ***** controla altura mínima y recorte. */
+  .media-card img { min-height:320px; }
+}
+
+/* =========================================================
+   SERVICIOS EN FRANJAS CON FOTOGRAFÍA
+   Estilo solicitado: como la franja azul destacada, alternando
+   azul y naranjo institucional.
+   ========================================================= */
+.services-showcase { background:#fff; }
+.services-intro { background:var(--soft); padding-bottom:58px; }
+.service-band { padding:78px 0; color:#fff; }
+.service-blue { background:linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%); }
+.service-orange { background:linear-gradient(135deg, var(--orange) 0%, #e67f24 100%); }
+.service-band-grid { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr); gap:64px; align-items:center; }
+.service-band-grid.reverse .service-band-copy { order:2; }
+.service-band-grid.reverse .service-photo { order:1; }
+.service-band-copy h2 { color:#fff; font-size:clamp(34px,4vw,50px); line-height:1.06; margin:8px 0 16px; letter-spacing:-.025em; }
+.service-kicker { display:inline-flex; align-items:center; max-width:100%; font-size:clamp(13px, 1.2vw, 15px); font-weight:900; letter-spacing:.18em; line-height:1.2; text-transform:uppercase; color:#fff; opacity:.96; margin-bottom:10px; padding:10px 16px; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); box-shadow:0 10px 22px rgba(0,0,0,.10); }
+.service-lead { color:rgba(255,255,255,.9); font-size:17px; max-width:720px; margin:0 0 22px; }
+.service-checks { list-style:none; padding:0; margin:0 0 28px; display:grid; gap:9px; }
+.service-checks li { color:#fff; position:relative; padding-left:24px; line-height:1.45; }
+.service-checks li::before { content:'✓'; position:absolute; left:0; top:0; font-weight:900; }
+.service-checks small { color:rgba(255,255,255,.82); font-size:.9em; }
+.service-photo { border-radius:22px; overflow:hidden; box-shadow:0 24px 65px rgba(0,0,0,.28); background:#fff; }
+.service-photo img { width:100%; height:430px; object-fit:cover; }
+.service-orange .service-photo { box-shadow:0 24px 65px rgba(111,54,11,.3); }
+.btn-dark { display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:13px 18px; background:var(--navy); color:#fff; border:1px solid rgba(255,255,255,.2); font-weight:800; }
+.btn-dark:hover { transform:translateY(-1px); background:#05274d; }
+
+/* Redes sociales del pie de página. */
+.footer-socials { display:flex !important; grid-auto-flow:column; justify-content:start; align-items:center; gap:10px !important; margin-top:12px; }
+.social-icon { width:42px; height:42px; border-radius:50%; display:grid !important; place-items:center; color:#fff; transition:transform .2s ease, box-shadow .2s ease; }
+.social-icon:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.22); }
+.social-instagram { background:radial-gradient(circle at 32% 100%, #ffd600 0 20%, #ff7a00 34%, #ff0169 60%, #d300c5 82%, #7638fa 100%); }
+.social-instagram svg { width:23px; height:23px; fill:none; stroke:#fff; stroke-width:1.8; }
+.social-instagram .dot { fill:#fff; stroke:none; }
+.social-facebook { background:#1877f2; cursor:default; }
+.fb-letter { font-family:Arial,Helvetica,sans-serif; font-weight:900; font-size:29px; line-height:1; transform:translateY(2px); }
+.social-whatsapp { background:#25d366; }
+.social-whatsapp svg { width:23px; height:23px; fill:#fff; }
+.floating-wa svg { width:30px; height:30px; fill:#fff; }
+
+@media (max-width: 980px) {
+  .service-band-grid, .service-band-grid.reverse { grid-template-columns:1fr; gap:34px; }
+  .service-band-grid.reverse .service-band-copy, .service-band-grid.reverse .service-photo { order:initial; }
+  .service-photo img { height:360px; }
+}
+
+@media (max-width: 640px) {
+  .service-band { padding:58px 0; }
+  .service-band-copy h2 { font-size:34px; }
+  .service-lead { font-size:16px; }
+  .service-photo img { height:280px; }
+  .footer-socials { margin-top:16px; }
+  .eyebrow { font-size: 13px; padding: 9px 13px; letter-spacing: .14em; }
+  .service-kicker { font-size: 12px; padding: 8px 12px; letter-spacing: .14em; }
+}
+
+
+/* =========================================================
+   AJUSTE DE PROPORCIONES DE FOTOGRAFÍAS
+   Reduce el peso visual de las imágenes sin afectar el resto
+   del diseño ni la versión móvil.
+   ========================================================= */
+.intro .split {
+  grid-template-columns: .92fr 1.08fr;
+  gap: 44px;
+}
+
+.intro .media-card img {
+  min-height: 360px;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.service-photo img {
+  height: 380px;
+}
+
+@media (max-width: 980px) {
+  .intro .split {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .intro .media-card img {
+    min-height: 320px;
+    max-height: 380px;
+  }
+
+  .service-photo img {
+    height: 340px;
+  }
+}
+
+@media (max-width: 640px) {
+  .intro .media-card img {
+    min-height: 280px;
+    max-height: 320px;
+  }
+
+  .service-photo img {
+    height: 260px;
+  }
+}
+
+
+/* =========================================================
+   CONTRASTE TÉRMINO DE GIRO
+   Mantiene el fondo naranjo y agrega contraste azul.
+   ========================================================= */
+.termino-contraste .service-kicker {
+  background: var(--navy);
+  border-color: rgba(255,255,255,.25);
+  color: #fff;
+}
+
+.termino-contraste .service-photo {
+  border: 5px solid var(--navy);
+  box-shadow: 0 24px 60px rgba(8,47,93,.28);
+}
+
+.termino-contraste .btn-dark {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+
+.termino-contraste .btn-dark:hover {
+  background: var(--blue);
+}
+
+/* =========================================================
+   =========================================================
+   SOLCONT - BETA AJUSTE SECCIÓN SERVICIOS
+   Fecha: 17-09-2026
+
+   OBJETIVO DE ESTA PRUEBA:
+   1) Hacer "SERVICIOS" del mismo tamaño que los títulos principales.
+   2) Agrandar los títulos principales de cada servicio.
+   3) Achicar los textos secundarios y listas.
+   4) Reducir espacios verticales para que se vea más contenido
+      sin tener que bajar el zoom del navegador.
+
+   IMPORTANTE:
+   Este bloque está al FINAL del CSS a propósito.
+   Así puedes volver atrás eliminando SOLO este bloque.
+   =========================================================
+   ========================================================= */
+
+/* >>> 1. CABECERA DE SERVICIOS: menos espacio vertical <<< */
+.services-intro {
+  padding-top: 58px !important;
+  padding-bottom: 34px !important;
+}
+
+.services-intro .section-head {
+  margin-bottom: 18px !important;
+}
+
+/* >>> 2. PALABRA "SERVICIOS": MÁS GRANDE Y VISIBLE <<< */
+.services-intro .eyebrow {
+  /* >>> MISMO TAMAÑO QUE "SOLUCIONES PARA CADA ETAPA" <<< */
+  font-size: clamp(42px, 4.6vw, 58px) !important; /* <<< TAMAÑO DE "SERVICIOS" */
+  line-height: 1.02 !important;
+  padding: 14px 28px !important;                  /* <<< TAMAÑO DE LA CÁPSULA */
+  letter-spacing: .08em !important;
+  margin-bottom: 12px !important;
+}
+
+/* Mantiene el título general claro, pero ocupa menos alto */
+.services-intro .section-head h2 {
+  margin-bottom: 10px !important;
+}
+
+.services-intro .section-head p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+/* >>> 3. FRANJAS DE SERVICIO: MENOS ALTAS <<< */
+.service-band {
+  padding: 48px 0 !important;
+}
+
+.service-band-grid {
+  gap: 38px !important;
+}
+
+/* >>> 4. TÍTULOS PRINCIPALES: MÁS GRANDES <<< */
+.service-band-copy h2 {
+  font-size: clamp(42px, 4.6vw, 58px) !important;
+  line-height: 1.02 !important;
+  margin: 4px 0 10px !important;
+}
+
+/* >>> 5. ETIQUETA PEQUEÑA DE CADA SERVICIO: MÁS COMPACTA <<< */
+.service-kicker {
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  padding: 7px 10px !important;
+  letter-spacing: .12em !important;
+  margin-bottom: 6px !important;
+}
+
+/* >>> 6. TEXTO DESCRIPTIVO: MÁS PEQUEÑO <<< */
+.service-lead {
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  margin: 0 0 14px !important;
+}
+
+/* >>> 7. LISTAS: MÁS COMPACTAS <<< */
+.service-checks {
+  gap: 4px !important;
+  margin: 0 0 16px !important;
+}
+
+.service-checks li {
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+.service-checks small {
+  font-size: 12px !important;
+}
+
+/* >>> 8. FOTOS: MENOS ALTAS PARA REDUCIR ESPACIO <<< */
+.service-photo img {
+  height: 320px !important;
+}
+
+/* >>> 9. BOTÓN: UN POCO MÁS COMPACTO <<< */
+.btn-dark {
+  padding: 10px 15px !important;
+  font-size: 14px !important;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+@media (max-width: 980px) {
+  .services-intro {
+    padding-top: 50px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .services-intro .eyebrow {
+    font-size: 42px !important; /* <<< "SERVICIOS" = título principal en tablet */
+    padding: 12px 24px !important;
+  }
+
+  .service-band {
+    padding: 42px 0 !important;
+  }
+
+  .service-band-grid,
+  .service-band-grid.reverse {
+    gap: 24px !important;
+  }
+
+  .service-band-copy h2 {
+    font-size: 42px !important;
+  }
+
+  .service-photo img {
+    height: 300px !important;
+  }
+}
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+@media (max-width: 640px) {
+  .services-intro {
+    padding-top: 44px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .services-intro .eyebrow {
+    font-size: 36px !important; /* <<< "SERVICIOS" = título principal en celular */
+    padding: 10px 18px !important;
+  }
+
+  .service-band {
+    padding: 34px 0 !important;
+  }
+
+  .service-band-copy h2 {
+    font-size: 36px !important;
+    line-height: 1.04 !important;
+  }
+
+  .service-lead {
+    font-size: 13px !important;
+  }
+
+  .service-checks li {
+    font-size: 12px !important;
+  }
+
+  .service-photo img {
+    height: 240px !important;
+  }
+}
+
+/* =========================================================
+   FIN - SOLCONT BETA AJUSTE SECCIÓN SERVICIOS
+   ========================================================= */
+
+/* ============================================================
+   ============================================================
+      >>>>>>>>>>>> PLANES - NO ACHICAR <<<<<<<<<<<<
+   ============================================================
+
+   ESTA REGLA DEBE QUEDAR AL FINAL DEL ARCHIVO.
+   CONTROLA SOLO LA CÁPSULA "PLANES".
+
+   - font-size = tamaño de la palabra PLANES
+   - padding = tamaño de la cápsula
+   ============================================================ */
+
+#planes .eyebrow {
+    font-size: 30px !important;       /* <<< TAMAÑO PALABRA PLANES */
+    padding: 14px 30px !important;    /* <<< TAMAÑO DE LA CÁPSULA */
+    letter-spacing: 0.18em !important;
+    font-weight: 900 !important;
+    line-height: 1.05 !important;
+}
+
+/* ============================================================
+      >>>>>>> FIN PLANES - NO ACHICAR <<<<<<<<
+   ============================================================ */
+

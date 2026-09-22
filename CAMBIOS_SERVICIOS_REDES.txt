@@ -1,0 +1,20 @@
+SOLCONT - CAMBIOS APLICADOS
+
+1. La sección Servicios ya no usa tarjetas.
+2. Los 7 servicios aparecen como franjas grandes horizontales con fotografía, siguiendo el estilo de la franja destacada azul.
+3. Se alternan azul y naranjo corporativo.
+4. Se incorporó el texto completo entregado para:
+   - Creación de Empresa
+   - Servicios Contables
+   - Recursos Humanos
+   - Asesoría Financiera
+   - Asesoría Tributaria
+   - Término de Giro
+   - Administración de Edificios y Condominios
+5. Se corrigieron detalles menores de ortografía y redacción.
+6. El pie de página incluye logos de Instagram, Facebook y WhatsApp.
+7. El logo de WhatsApp del pie es un enlace funcional al WhatsApp de SOLCONT.
+8. El botón flotante de WhatsApp ahora usa el logo de WhatsApp en vez del globo de conversación.
+9. Se mantuvieron la cabecera, planes, equipo, formulario, imágenes y funcionamiento anterior.
+
+Nota: Instagram enlaza a @solcont.cl. Facebook se muestra como logo porque el sitio solo indicaba “Solcont SPA” y no contenía una URL exacta del perfil.

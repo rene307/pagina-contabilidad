@@ -1,0 +1,22 @@
+CORRECCIÓN DE LOGO SOLCONT
+
+Cambios realizados:
+1. Se creó assets/logo-solcont-horizontal.png usando el símbolo y texto del logo original.
+2. index.html usa el logo horizontal solo en la cabecera.
+3. El logo vertical original se mantiene en el footer.
+4. styles.css fue actualizado:
+   - logo desktop: 300px
+   - logo tablet: 250px
+   - logo móvil: 205px
+   - cabecera desktop: 96px
+5. El CSS conserva comentarios para ubicar rápidamente cada sección.
+
+Para cambiar tamaño en computador:
+Busca en styles.css: ***** LOGO PRINCIPAL *****
+y cambia:
+width: 300px;
+
+Ejemplos:
+width: 280px;  -> un poco más pequeño
+width: 320px;  -> un poco más grande
+width: 340px;  -> bastante más grande

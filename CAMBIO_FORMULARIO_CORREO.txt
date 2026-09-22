@@ -1,0 +1,6 @@
+CAMBIO REALIZADO
+- El formulario de contacto ahora abre el correo del visitante en vez de WhatsApp.
+- Destinatario: raul@solcont.cl
+- Se completa automáticamente el asunto y el cuerpo con Nombre, Empresa, Teléfono, Correo, Servicio y Mensaje.
+- El botón ahora dice: "Enviar consulta por correo".
+- Los demás botones y el logo flotante de WhatsApp se mantienen funcionando por WhatsApp.
